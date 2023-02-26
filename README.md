@@ -3,10 +3,13 @@
 **Author Name : Doha Khamaiseh**
 
 ## WRRC :
-![This is an image](./WRRC.jpg)
+![This is an image](./WRRC2.jpg)
 
 ## Overview :
   *Firstly, we created a server.js file and initialize it.Secondly, we installed express and cors frameworks, the first one is to ease creating apps and saves a lot of coding time, and the second one is to make the server open for all client requests .Thirdly, we started building the server.js file by specifying a port number for it then sending requests and receiving responses. Finally, we let our server start working*
+
+## Update Overview :
+*As an update, we took our data which is movies not from the data.json file but from 3rd  party API and gave it to our server, so when we send a request by using our browser, it will go to our server then our server will send a request for 3rd party API to get a response then give this response to the client who is our browser*
 
 ## Getting Started :
 *1- clone our Repo. in their machines. 2-install express and cors by writing this command on the Terminal: npm install express cors 3- let the server start working by writing  this command on the Terminal: npm start 4- enter the URL for the route in the browser to see the results*
