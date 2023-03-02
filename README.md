@@ -14,7 +14,7 @@
 ## Update Overview #2:
 *Instead of taking the movies information from The Movie DB API like last lab, now  we will take  the movies information from Postgresql DBMS and send them back to the client but initially, we took this information from the client when he/she entered it by using Thunder Client Tool*
 
-## Update Overview #2:
+## Update Overview #3:
 *here we made our App a CRUD App, which means the client can Create,  Read, Update, and Delete from the Movie Table, and we used Path Parameters way to specify the wanted row by its ID*
 
 ## Getting Started :
