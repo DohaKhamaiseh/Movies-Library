@@ -3,7 +3,7 @@
 **Author Name : Doha Khamaiseh**
 
 ## WRRC :
-![This is an image](./WRRC3.jpg)
+![This is an image](./WRRC4.jpg)
 
 ## Overview :
   *Firstly, we created a server.js file and initialize it.Secondly, we installed express and cors frameworks, the first one is to ease creating apps and saves a lot of coding time, and the second one is to make the server open for all client requests .Thirdly, we started building the server.js file by specifying a port number for it then sending requests and receiving responses. Finally, we let our server start working*
@@ -13,6 +13,9 @@
 
 ## Update Overview #2:
 *Instead of taking the movies information from The Movie DB API like last lab, now  we will take  the movies information from Postgresql DBMS and send them back to the client but initially, we took this information from the client when he/she entered it by using Thunder Client Tool*
+
+## Update Overview #2:
+*here we made our App a CRUD App, which means the client can Create,  Read, Update, and Delete from the Movie Table, and we used Path Parameters way to specify the wanted row by its ID*
 
 ## Getting Started :
 *1- clone our Repo. in their machines. 2-install express and cors by writing this command on the Terminal: npm install express cors 3- let the server start working by writing  this command on the Terminal: npm start 4- enter the URL for the route in the browser to see the results*

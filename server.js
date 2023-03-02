@@ -51,6 +51,19 @@ server.get('/getMovies', getMovieHandler);
 // Add Movie Route  :
 server.post('/addMovie', addMovieHandler);
 
+/// by id
+// http://localhost:4000/updateMovie/id
+// Update Movie Route :
+server.put('/updateMovie/:id', updateMovieHandler);
+
+// http://localhost:4000/deleteMovie/id
+// Delete Movie Route  :
+server.delete('/deleteMovie/:id', deleteMovieHandler);
+
+// http://localhost:4000/getMoviesId/id
+// get Movie Route by id  :
+server.get('/getMoviesId/:id', getMovieByIdHandler);
+
 
 // Default Route 
 // http://localhost:4000/ljfdnkf
@@ -232,6 +245,45 @@ function addMovieHandler (req,res){
           errorHandler1(error, req, res);
       });
 }
+
+function updateMovieHandler (req,res){
+  const id = req.params.id;
+  const sql = `UPDATE movietable SET id=$1, title=$2, release_date=$3, poster_path=$4, overview=$5 WHERE id=${id} RETURNING *`;
+  const values = [req.body.id,req.body.title,req.body.release_date,req.body.poster_path,req.body.overview];
+  client.query(sql,values)
+  .then((data)=>{
+      res.status(200).send(data.rows);
+  })
+  .catch((err)=>{
+      errorHandler1(err,req,res);
+  })
+}
+
+function deleteMovieHandler (req,res){
+  const id = req.params.id;
+    const sql = `DELETE FROM movietable WHERE id=${id}`;
+    client.query(sql)
+    .then((data)=>{
+        res.status(200).send("The row was deleted !");
+    })
+    .catch((err)=>{
+        errorHandler1(err,req,res);
+    })
+}
+
+
+function getMovieByIdHandler (req,res){
+  const id = req.params.id ;
+  const sql = `SELECT * FROM  movietable WHERE id=${id}`;
+  client.query(sql)
+  .then((data)=>{  
+      res.status(200).send(data.rows);  
+  })
+  .catch((err)=>{
+      errorHandler1(err,req,res);
+  })
+}
+
 
 // middleware error handler
 function errorHandler1(error, req, res) {
