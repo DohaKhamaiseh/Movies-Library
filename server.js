@@ -12,7 +12,7 @@ const pg = require('pg');
 const Data = require('./Movie_Data/data.json');
 
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 //  Postgresql://localhost:5432/movie
 const client = new pg.Client(process.env.DATABASE_URL);
