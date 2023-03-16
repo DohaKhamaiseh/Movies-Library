@@ -50,6 +50,8 @@ server.get('/getMovies', getMovieHandler);
 // http://localhost:4000/addMovie
 // Add Movie Route  :
 server.post('/addMovie', addMovieHandler);
+// update movie
+server.put('/updateMovie', updateMovieHandler) ;
 
 
 // Default Route 
@@ -223,6 +225,20 @@ function addMovieHandler (req,res){
   const MovieTable = req.body; 
   const sql = `INSERT INTO MovieTable (id, title, release_date, poster_path, overview,comment) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *;`
   const values = [MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview,MovieTable.comment];
+
+  client.query(sql,values)
+  .then((data) => {
+      res.send(data.rows);
+  })
+      .catch(error => {
+          errorHandler1(error, req, res);
+      });
+}
+
+function updateMovieHandler (req,res){
+  const MovieTable = req.body; 
+  const sql = `UPDATE MovieTable (id, title, release_date, poster_path, overview,comment) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *;`
+  const values =[MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview,MovieTable.comment];
 
   client.query(sql,values)
   .then((data) => {
