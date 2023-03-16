@@ -234,8 +234,8 @@ function getMovieHandler (req,res){
 
 function addMovieHandler (req,res){
   const MovieTable = req.body; 
-  const sql = `INSERT INTO MovieTable (id, title, release_date, poster_path, overview) VALUES ($1,$2,$3,$4,$5) RETURNING *;`
-  const values = [MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview];
+  const sql = `INSERT INTO MovieTable ( title, release_date, poster_path, overview,comment) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *;`
+  const values = [MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview , MovieTable.comment];
 
   client.query(sql,values)
   .then((data) => {
