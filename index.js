@@ -244,9 +244,9 @@ function addMovieHandler (req,res){
       client.query(sql).then(data => {
         return res.status(200).json(data.rows);
       })
-      .catch(error => {
-        errorHandler1(error, req, res);
-    });
+    //   .catch(error => {
+    //     errorHandler1(error, req, res);
+    // });
   })
       .catch(error => {
           errorHandler1(error, req, res);
