@@ -237,17 +237,17 @@ function addMovieHandler (req,res){
   const sql = `INSERT INTO MovieTable (title, release_date,poster_path,overview,comment) VALUES ('${movie.title}','${movie.release_date}','${movie.poster_path}','${movie.overview}','${movie.comment}');`
   //const values = [MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview , MovieTable.comment];
 
-  client.query(sql)
-  .then((data) => {
+  // client.query(sql)
+  // .then((data) => {
 
-      const sql = `SELECT * FROM MovieTable`;
-      client.query(sql).then(data => {
-        return res.status(200).json(data.rows);
-      })
-    //   .catch(error => {
-    //     errorHandler1(error, req, res);
-    // });
-  })
+  //     const sql = `SELECT * FROM MovieTable`;
+  //     client.query(sql).then(data => {
+  //       return res.status(200).json(data.rows);
+  //     })
+  //   //   .catch(error => {
+  //   //     errorHandler1(error, req, res);
+  //   // });
+  // })
       .catch(error => {
           errorHandler1(error, req, res);
       });
