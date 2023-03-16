@@ -51,7 +51,7 @@ server.get('/getMovies', getMovieHandler);
 // Add Movie Route  :
 server.post('/addMovie', addMovieHandler);
 // update movie
-server.put('/updateMovie', updateMovieHandler) ;
+server.put('/updateMovie/:id', updateMovieHandler) ;
 
 
 // Default Route 
@@ -237,7 +237,9 @@ function addMovieHandler (req,res){
 
 function updateMovieHandler (req,res){
   const MovieTable = req.body; 
-  const sql = `UPDATE MovieTable (id, title, release_date, poster_path, overview,comment) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *;`
+  const id = req.params.id ;
+  // console.log(req.body); 
+  const sql = `UPDATE MovieTable SET  title=$2, release_date=$3, poster_path=$4, overview=$5,comment=$6 WHERE id=${id} RETURNING *;`
   const values =[MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview,MovieTable.comment];
 
   client.query(sql,values)
@@ -245,7 +247,7 @@ function updateMovieHandler (req,res){
       res.send(data.rows);
   })
       .catch(error => {
-          errorHandler1(error, req, res);
+          errorHandler1(error, req, res); 
       });
 }
 
