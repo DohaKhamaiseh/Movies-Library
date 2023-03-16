@@ -234,12 +234,12 @@ function getMovieHandler (req,res){
 
 function addMovieHandler (req,res){
   const movie = req.body; 
-  const sql = `INSERT INTO movietable (title, release_date, overview,poster_path,comment) VALUES ('${movie.title}','${movie.release_date}','${movie.overview}','${movie.poster_path}','${movie.comment}');`
-  const values = [MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview , MovieTable.comment];
+  const sql = `INSERT INTO MovieTable (title, release_date,poster_path,overview,comment) VALUES ('${movie.title}','${movie.release_date}','${movie.poster_path}','${movie.overview}','${movie.comment}');`
+  //const values = [MovieTable.id, MovieTable.title, MovieTable.release_date, MovieTable.poster_path, MovieTable.overview , MovieTable.comment];
 
   client.query(sql)
   .then((data) => {
-      res.send(data.rows);
+      res.send("done");
   })
       .catch(error => {
           errorHandler1(error, req, res);
@@ -248,7 +248,7 @@ function addMovieHandler (req,res){
 
 function updateMovieHandler (req,res){
   const id = req.params.id;
-  const sql = `UPDATE movietable SET title=$2, release_date=$3, poster_path=$4, overview=$5, comment=$6 WHERE id=${id} RETURNING *;`;
+  const sql = `UPDATE MovieTable SET title=$2, release_date=$3, poster_path=$4, overview=$5, comment=$6 WHERE id=${id} RETURNING *;`;
   const values = [req.body.id,req.body.title,req.body.release_date,req.body.poster_path,req.body.overview,req.body.comment];
   client.query(sql,values)
   .then((data)=>{
