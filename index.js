@@ -253,14 +253,14 @@ function updateMovieHandler (req,res){
   const values = [req.body.title,req.body.release_date,req.body.poster_path,req.body.overview,req.body.comment];
   client.query(sql,values)
   .then((data)=>{
-
-      const sql = `SELECT * FROM MovieTable`;
-      client.query(sql).then(data => {
-        return res.status(200).json(data.rows);
-      })
-      .catch(error => {
-        errorHandler1(error, req, res);
-    });
+    res.status(200).send(data.rows);
+    //   const sql = `SELECT * FROM MovieTable`;
+    //   client.query(sql).then(data => {
+    //     return res.status(200).json(data.rows);
+    //   })
+    //   .catch(error => {
+    //     errorHandler1(error, req, res);
+    // });
   })
   .catch((err)=>{
       errorHandler1(err,req,res);
