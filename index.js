@@ -249,18 +249,19 @@ function addMovieHandler (req,res){
 
 function updateMovieHandler (req,res){
   const id = req.params.id;
-  const sql = `UPDATE MovieTable SET title=$1, release_date=$2, poster_path=$3, overview=$4, comment=$ WHERE id=${id} RETURNING *;`;
+  const sql = `UPDATE MovieTable SET title=$1, release_date=$2, poster_path=$3, overview=$4, comment=$5 WHERE id=${id} RETURNING *`;
   const values = [req.body.title,req.body.release_date,req.body.poster_path,req.body.overview,req.body.comment];
   client.query(sql,values)
   .then((data)=>{
-    res.status(200).send(data.rows);
-    //   const sql = `SELECT * FROM MovieTable`;
-    //   client.query(sql).then(data => {
-    //     return res.status(200).json(data.rows);
-    //   })
-    //   .catch(error => {
-    //     errorHandler1(error, req, res);
-    // });
+console.log(data);
+      const sql = `SELECT * FROM MovieTable`;
+      client.query(sql).then(data => {
+        //console.log(data.rows);
+        return res.status(200).json(data.rows);
+      })
+      .catch(error => {
+        errorHandler1(error, req, res);
+    });
   })
   .catch((err)=>{
       errorHandler1(err,req,res);
